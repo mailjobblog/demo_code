@@ -184,15 +184,16 @@ outline搭建vpn教程：/article/93
 
 <c、好吧，如果你的客户端很笨，上面的都不支持，那只能原始的手动填入信息了，还记得上面让你保留的信息吗？都在那里！
 
-这是ssr的配置（win + mac）：
+这是 SSR 的配置（win + mac）：
 
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123173717.png" style="zoom: 45%;" />
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133238.png" style="zoom: 45%;" />
 
-ss的配置：
+SS的配置：
+
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133301.png" style="zoom:67%;" />
 
-## SSR 服务器配置
+## 服务器管理以及配置
 
 #### 1、如何配置多个账号
 
