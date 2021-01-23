@@ -202,13 +202,7 @@ root@vultr:/usr/local/src# pwd
 root@vultr:/usr/local/src# ls
 ssr.sh
 root@vultr:/usr/local/src# bash ssr.sh 
-  ShadowsocksR 一键管理脚本 [v2.0.38]
-  ---- Toyo | doub.io/ss-jc42 ----
-
-  1. 安装 ShadowsocksR
-  2. 更新 ShadowsocksR
-  3. 卸载 ShadowsocksR
-  4. 安装 libsodium(chacha20)
+# 可以看到此处是[单端口]模式，需要把它改成[多端口]模式
 ————————————
   5. 查看 账号信息
   6. 显示 连接信息
@@ -216,18 +210,11 @@ root@vultr:/usr/local/src# bash ssr.sh
   8. 手动 修改配置
   9. 切换 端口模式
 ————————————
- 10. 启动 ShadowsocksR
- 11. 停止 ShadowsocksR
- 12. 重启 ShadowsocksR
- 13. 查看 ShadowsocksR 日志
-————————————
- 14. 其他功能
- 15. 升级脚本
- 
- 当前状态: 已安装 并 已启动
- 当前模式: 单端口
+当前模式: 单端口
 
-请输入数字 [1-15]：
+# 运行sh文件后，输入 9 ，切换多端口模式
+# 多端口模式下,选择7设置用户配置,然后选择1添加用户配置
+# 第一次配置多端口时,需要设置各种参数,根据提示即可,第二次添加用户时,只需要设置端口和密码即可
 
 
 第二种办法（修改配置文件）
@@ -236,54 +223,21 @@ root@vultr:/usr/local/src# bash ssr.sh
 
 # 可以看到一个json字符串，类似于这样
 {
-    "server": "0.0.0.0",
-    "server_ipv6": "::",
-    "server_port": 2333,
-    "local_address": "127.0.0.1",
-    "local_port": 1080,
-
+    *** 此处略去 ***
     "password": "mailjob",
-    "method": "aes-128-ctr",
-    "protocol": "auth_sha1_v4_compatible",
-    "protocol_param": "",
-    "obfs": "plain",
-    "obfs_param": "",
-    "speed_limit_per_con": 0,
-    "speed_limit_per_user": 0,
-
-    "additional_ports" : {},
-    "timeout": 120,
-    "udp_timeout": 60,
-    "dns_ipv6": false,
-    "connect_verbose_info": 0,
-    "redirect": "",
-    "fast_open": false
+    *** 此处略去 ***
 }
 
 # 现在把它改成多个账号
 {
-    "server": "0.0.0.0", 
-    "server_ipv6": "::", 
-    "local_address": "127.0.0.1", 
-    "local_port": 1081, 
+    *** 此处略去 ***
     "port_password": {
         "端口1": "密码1", 
         "端口2": "密码2", 
         "端口3": "密码3", 
         "端口4": "密码4"
     }, 
-    "timeout": 120, 
-    "udp_timeout": 60, 
-    "method": "chacha20", 
-    "protocol": "auth_sha1_compatible", 
-    "protocol_param": "", 
-    "obfs": "http_simple_compatible", 
-    "obfs_param": "", 
-    "dns_ipv6": false, 
-    "connect_verbose_info": 0, 
-    "redirect": "", 
-    "fast_open": false, 
-    "workers": 1
+    *** 此处略去 ***
 }
 
 # linux ssr 重启
