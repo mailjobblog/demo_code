@@ -185,6 +185,7 @@ outline搭建vpn教程：/article/93
 <c、好吧，如果你的客户端很笨，上面的都不支持，那只能原始的手动填入信息了，还记得上面让你保留的信息吗？都在那里！
 
 这是ssr的配置（win + mac）：
+
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123173717.png" style="zoom: 45%;" />
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133238.png" style="zoom: 45%;" />
 
