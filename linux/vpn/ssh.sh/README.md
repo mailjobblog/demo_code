@@ -1,9 +1,11 @@
 # ssr.sh 搭建SSR/SS服务端教程
 
+
 > #### 相关链接
 >
 > 境外服务器：https://www.vultr.com/?ref=8214267  
 > 本站ssr脚本预览：https://raw.githubusercontent.com/mailjobblog/demo_code/main/linux/vpn/ssh.sh/ssr.sh  
+
 > #### SSR\SS 客户端配置下载
 >
 > windows系统 ssr下载地址：https://github.com/shadowsocksrr/shadowsocksr-csharp/releases/download/4.9.0/ShadowsocksR-win-4.9.0.zip  
@@ -12,12 +14,12 @@
 > windows、Mac系统 ss下载地址：https://www.sednax.com/  
 > ios系统：大陆下载不了。请淘宝买一个非大陆的Apple id，然后登陆搜索wingy、outline、SuperWingy、RocketWingy 等软件，你也可以直接搜ss或者ssr，会出现相关软件的。  
 >
+
 > #### 其他链接
 >
 > 原文链接：https://viencoding.com/article/122#comment-287  
 > 原ssr脚本预览：https://github.com/luvvien/ssr-install-shellscript  
 > 其他vpn搭建方法，以及vpn提速方法：https://www.codeob.com/
-
 
 
 ## 服务器地址要求
