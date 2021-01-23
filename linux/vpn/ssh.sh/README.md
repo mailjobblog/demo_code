@@ -105,12 +105,9 @@ Last-modified header missing -- time-stamps turned off.
 > 
 >![](http://img.github.mailjob.net/jefferyjob.github.io/20210123133141.png)
 > 
->
-> 
 >之后呢，我们就开始添加端口了，首先点一次右侧的`+`，下面会自动添加两条新纪录，然后修改红框框的内容，第一个选择`TCP`，第二个填写`2333`(或者你自定义的端口，但是要跟之前安装ss、ssr服务时设置的对应)，然后再点右侧的加号，最后会有三条记录，就像下面的图一样
 > 
 >![](http://img.github.mailjob.net/jefferyjob.github.io/20210123133207.png)
-
 > 最后，在instance列表，找到你的instance，点开查看详情，然后将你instance与刚刚设置的组绑定。
 >
 > ![](http://img.github.mailjob.net/jefferyjob.github.io/20210123133219.png)
@@ -208,7 +205,7 @@ ss的配置：
     "local_address": "127.0.0.1",
     "local_port": 1080,
 
-    "password": "qwer1234",
+    "password": "mailjob",
     "method": "aes-128-ctr",
     "protocol": "auth_sha1_v4_compatible",
     "protocol_param": "",
