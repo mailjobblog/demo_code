@@ -190,7 +190,7 @@ ss的配置：
 
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133301.png" style="zoom:67%;" />
 
-## SSR 配置
+## SSR 服务器配置
 
 #### 如何配置多个账号
 
