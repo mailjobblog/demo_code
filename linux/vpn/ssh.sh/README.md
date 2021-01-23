@@ -26,7 +26,7 @@
 
 - CentOS 6+ 或者 Debian 6+ 或者 Ubuntu 14.04+（包含最新的ubuntu18、ubuntu19） 
 - 注: 我们通常使用ubuntu16或者18
-- 下文将以ubuntu18为例
+- 下文将以 `ubuntu18` 为例
 
 ## 安装前
 
@@ -102,16 +102,18 @@ Last-modified header missing -- time-stamps turned off.
 > ###### Vultr端口开放指南（可以跳过端口开放设置，默认开放全部端口）
 >
 > 添加一个组，点下图中蓝色的按钮，然后随便起个名字，我就叫`vpn`了。
+> 
+>![](http://img.github.mailjob.net/jefferyjob.github.io/20210123133141.png)
+> 
 >
-> ![Firewalls](https://viencoding.com/storage/20190518/LOimcnAn0Sh5HzT818cQ90JQqdjXYcaXeJbppoyz.png)
->
-> 之后呢，我们就开始添加端口了，首先点一次右侧的`+`，下面会自动添加两条新纪录，然后修改红框框的内容，第一个选择`TCP`，第二个填写`2333`(或者你自定义的端口，但是要跟之前安装ss、ssr服务时设置的对应)，然后再点右侧的加号，最后会有三条记录，就像下面的图一样
->
-> ![添加端口](https://viencoding.com/storage/20190518/2B5YaFkDuiN900sRtygA2uz4bIvAle4zuVTqryfg.png)
->
+> 
+>之后呢，我们就开始添加端口了，首先点一次右侧的`+`，下面会自动添加两条新纪录，然后修改红框框的内容，第一个选择`TCP`，第二个填写`2333`(或者你自定义的端口，但是要跟之前安装ss、ssr服务时设置的对应)，然后再点右侧的加号，最后会有三条记录，就像下面的图一样
+> 
+>![](http://img.github.mailjob.net/jefferyjob.github.io/20210123133207.png)
+
 > 最后，在instance列表，找到你的instance，点开查看详情，然后将你instance与刚刚设置的组绑定。
 >
-> ![绑定安全组](https://viencoding.com/storage/20190518/YEEuewIHjI94GXTDxv1q7YPgaRO2x1giv6FqfI4a.png)
+> ![](http://img.github.mailjob.net/jefferyjob.github.io/20210123133219.png)
 >
 > 选择刚刚那个vpn的组，然后点蓝色的按钮就好了。
 
@@ -184,11 +186,11 @@ b.有的客户端支持二维码方式，那就复制提示信息里面的二维
 
 c.好吧，如果你的客户端很笨，上面的都不支持，那只能原始的手动填入信息了，还记得上面让你保留的信息吗？都在那里！这是ssr的配置：
 
-![ssr config](https://viencoding.com/storage/20190314/UlzHyI383DxJXz3xpO0MaAkO8411b2xZHLZXlqRs.png)
+<img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133238.png" style="zoom: 50%;" />
 
 ss的配置：
 
-![ss config](https://viencoding.com/storage/20190314/2ACyvSupqV5YF1NbFXfo0RNLoMLZifWfXZLwOGU7.png)
+<img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133301.png" style="zoom:67%;" />
 
 ## SSR 配置
 
