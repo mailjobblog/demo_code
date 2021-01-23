@@ -89,9 +89,9 @@ netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |awk '{print $5}' |
 ```
 # 列出 当前SS端口连接的链接数。比如：服务器IP是 233.233.233.233 ，然后你想要知道链接数的端口是10000 ，那命令就是第二行的示例
 # 示例 netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |grep 233.233.233.233:10000
-netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |grep VPS_IP:SS_Port
+>> netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |grep VPS_IP:SS_Port
 
 # 显示 当前SS端口连接的链接数，这个只是显示有几个链接数。示例如上。
 # 示例 netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |grep 233.233.233.233:10000 |wc -l/li>
-netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |grep VPS_IP:SS_Port |wc -l/li>
+>> netstat -anp |grep 'ESTABLISHED' |grep 'python' |grep 'tcp6' |grep VPS_IP:SS_Port |wc -l/li>
 ```
