@@ -2,8 +2,8 @@
 
 > ## 相关链接
 >
-> 原文链接：https://viencoding.com/article/122#comment-287
-> 博客ssr的脚本github地址：https://github.com/luvvien/ssr-install-shellscript
+> 原文链接：https://viencoding.com/article/122#comment-287  
+> 博客ssr的脚本github地址：https://github.com/luvvien/ssr-install-shellscript  
 >
 > #### ss\ssr 客户端配置下载
 > windows、Mac系统 ss下载地址：https://www.sednax.com/  
