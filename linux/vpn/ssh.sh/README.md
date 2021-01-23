@@ -40,7 +40,7 @@
 #### 一键安装：将以下命令复制到你已连接的服务器命令行中
 
 ```
-wget -N --no-check-certificate https://raw.githubusercontent.com/mailjobblog/demo_code/main/linux/vpn/ssh.sh/ssr.sh && chmod +x ssr.sh && bash ssr.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/luvvien/ssr-install-shellscript/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh
 ```
 
 #### 好了，执行上述命令之后, 我们看到以下提示:
