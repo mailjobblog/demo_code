@@ -173,9 +173,9 @@ outline搭建vpn教程：/article/93
 
 ## 如何使用？
 
-1、下载ssr客户端
+**1、下载ssr客户端**
 
-2、配置客户端并连接
+**2、配置客户端并连接**
 
 <a、有的客户端支持链接方式，复制粘贴就好，也就是类似于这个`ss://YWVzLTEyOC1jdHI6dmllbi50ZWNoQDE0OS4yOC4xNDYuMTQ0OjIzMzM` 或者` ssr://MTQ5LjI4LjE0Ni4xNDQ6MjMzMzphdXRoX3NoYTFfdjQ6YWVzLTEyOC1jdHI6cGxhaW46ZG1sbGJpNTBaV05v` 当然，要区分你连的ss还是ssr。
 
@@ -184,12 +184,12 @@ outline搭建vpn教程：/article/93
 
 <c、好吧，如果你的客户端很笨，上面的都不支持，那只能原始的手动填入信息了，还记得上面让你保留的信息吗？都在那里！
 
-这是 SSR 的配置（win + mac）：
+**这是 SSR 的配置（win + mac）：**
 
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123173717.png" style="zoom: 45%;" />
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133238.png" style="zoom: 45%;" />
 
-SS的配置：
+**SS的配置：**
 
 <img src="http://img.github.mailjob.net/jefferyjob.github.io/20210123133301.png" style="zoom:67%;" />
 
