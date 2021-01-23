@@ -173,7 +173,9 @@ outline搭建vpn教程：/article/93
 
 2、配置客户端并连接
 
-我们需要用到上一步让你保留的提示信息了。
+我们需要用到上一步让你保留的提示信息了，如下图。
+
+![](http://img.github.mailjob.net/jefferyjob.github.io/20210123134547.png)
 
 a.有的客户端支持链接方式，复制粘贴就好，也就是类似于这个`ss://YWVzLTEyOC1jdHI6dmllbi50ZWNoQDE0OS4yOC4xNDYuMTQ0OjIzMzM` 或者` ssr://MTQ5LjI4LjE0Ni4xNDQ6MjMzMzphdXRoX3NoYTFfdjQ6YWVzLTEyOC1jdHI6cGxhaW46ZG1sbGJpNTBaV05v` 当然，要区分你连的ss还是ssr。
 
