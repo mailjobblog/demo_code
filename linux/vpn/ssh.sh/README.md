@@ -1,4 +1,4 @@
-# ssr.sh 搭建SSR/SS服务端教程
+# SSR.sh 搭建SSR/SS服务端教程
 
 
 > #### 相关链接
@@ -198,6 +198,8 @@ outline搭建vpn教程：/article/93
 #### 1、如何配置多个账号
 
 ```
+注意：添加成功后，要去服务器开放添加的这个端口，参见上文中提到的【Vultr端口开放指南】方法
+
 第一种办法（使用管理命令）
 # 进入安装目录，bash 执行 ssr.sh 命令进行管理
 root@vultr:/usr/local/src# pwd
