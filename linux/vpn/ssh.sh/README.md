@@ -1,8 +1,8 @@
 # ssr.sh 搭建SSR/SS服务端教程
 
 > #### 相关链接
-> 境外服务器：https://www.vultr.com/?ref=8214267
-> 本站ssr脚本预览：https://raw.githubusercontent.com/mailjobblog/demo_code/main/linux/vpn/ssh.sh/ssr.sh
+> 境外服务器：https://www.vultr.com/?ref=8214267  
+> 本站ssr脚本预览：https://raw.githubusercontent.com/mailjobblog/demo_code/main/linux/vpn/ssh.sh/ssr.sh  
 > #### ss\ssr 客户端配置下载
 > windows、Mac系统 ss下载地址：https://www.sednax.com/  
 > windows系统 ssr下载地址：https://github.com/shadowsocksrr/shadowsocksr-csharp/releases/download/4.9.0/ShadowsocksR-win-4.9.0.zip  
