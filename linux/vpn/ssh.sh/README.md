@@ -193,7 +193,7 @@ ss的配置：
 
 ## SSR 服务器配置
 
-#### 如何配置多个账号
+#### 1、如何配置多个账号
 
 ```
 第一种办法（使用管理命令）
@@ -249,7 +249,7 @@ root@vultr:/usr/local/src# bash ssr.sh
 > service iptablesstopchkconfig iptablesoff
 ```
 
-#### linux管理ssr日常命令
+#### 2、linux管理ssr日常命令
 
 ```
 启动：
