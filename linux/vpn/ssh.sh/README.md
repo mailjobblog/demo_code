@@ -13,8 +13,7 @@
 > #### 其他链接
 > 原文链接：https://viencoding.com/article/122#comment-287  
 > 原ssr脚本预览：https://github.com/luvvien/ssr-install-shellscript  
->
-> 其他vpn搭建方法，以及vpn提速方法
+> 其他vpn搭建方法，以及vpn提速方法：https://www.codeob.com/
 
 
 
@@ -196,6 +195,42 @@ ss的配置：
 #### 如何配置多个账号
 
 ```
+第一种办法（使用管理命令）
+# 进入安装目录，bash 执行 ssr.sh 命令进行管理
+root@vultr:/usr/local/src# pwd
+/usr/local/src
+root@vultr:/usr/local/src# ls
+ssr.sh
+root@vultr:/usr/local/src# bash ssr.sh 
+  ShadowsocksR 一键管理脚本 [v2.0.38]
+  ---- Toyo | doub.io/ss-jc42 ----
+
+  1. 安装 ShadowsocksR
+  2. 更新 ShadowsocksR
+  3. 卸载 ShadowsocksR
+  4. 安装 libsodium(chacha20)
+————————————
+  5. 查看 账号信息
+  6. 显示 连接信息
+  7. 设置 用户配置
+  8. 手动 修改配置
+  9. 切换 端口模式
+————————————
+ 10. 启动 ShadowsocksR
+ 11. 停止 ShadowsocksR
+ 12. 重启 ShadowsocksR
+ 13. 查看 ShadowsocksR 日志
+————————————
+ 14. 其他功能
+ 15. 升级脚本
+ 
+ 当前状态: 已安装 并 已启动
+ 当前模式: 单端口
+
+请输入数字 [1-15]：
+
+
+第二种办法（修改配置文件）
 > cd /etc/shadowsocksr
 > vim /etc/shadowsocksr
 
@@ -225,8 +260,34 @@ ss的配置：
     "fast_open": false
 }
 
+# 现在把它改成多个账号
+{
+    "server": "0.0.0.0", 
+    "server_ipv6": "::", 
+    "local_address": "127.0.0.1", 
+    "local_port": 1081, 
+    "port_password": {
+        "端口1": "密码1", 
+        "端口2": "密码2", 
+        "端口3": "密码3", 
+        "端口4": "密码4"
+    }, 
+    "timeout": 120, 
+    "udp_timeout": 60, 
+    "method": "chacha20", 
+    "protocol": "auth_sha1_compatible", 
+    "protocol_param": "", 
+    "obfs": "http_simple_compatible", 
+    "obfs_param": "", 
+    "dns_ipv6": false, 
+    "connect_verbose_info": 0, 
+    "redirect": "", 
+    "fast_open": false, 
+    "workers": 1
+}
+
 # linux ssr 重启
-> /etc/init.d/shadowsocks restart
+> /etc/init.d/ssr restart
 
 # 如不能联网，则关闭防火墙（尽量别关闭防火墙，检查端口问题）
 > service iptables restart
@@ -237,13 +298,13 @@ ss的配置：
 
 ```
 启动：
-> /etc/init.d/shadowsocks start
+> /etc/init.d/ssr start
 停止:
-> /etc/init.d/shadowsocks stop
+> /etc/init.d/ssr stop
 重启：
-> /etc/init.d/shadowsocks restart
+> /etc/init.d/ssr restart
 状态：
-> /etc/init.d/shadowsocks status
+> /etc/init.d/ssr status
 
 # 下方为测试用例
 root@vultr:/usr/local/src# /etc/init.d/ssr help
