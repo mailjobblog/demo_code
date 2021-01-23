@@ -177,10 +177,10 @@ outline搭建vpn教程：/article/93
 
 **2、配置客户端并连接**
 
-***<a、有的客户端支持链接方式，复制粘贴就好，也就是类似于这个`ss://YWVzLTEyOC1jdHI6dmllbi50ZWNoQDE0OS4yOC4xNDYuMTQ0OjIzMzM` 或者` ssr://MTQ5LjI4LjE0Ni4xNDQ6MjMzMzphdXRoX3NoYTFfdjQ6YWVzLTEyOC1jdHI6cGxhaW46ZG1sbGJpNTBaV05v` 当然，要区分你连的ss还是ssr***
+***<a、有的客户端支持链接方式，复制粘贴就好，也就是类似于这个`ss://YWVzLTEyOC1jd` 或者` ssr://MTQ5LjI4LjE0Ni4xND` 当然，要区分你连的ss还是ssr***
 
 ***<b、有的客户端支持二维码方式，那就复制提示信息里面的二维码链接到浏览器，我的博客会替你生成二维码，以Mac电脑上的ss为例：
-复制`/qrcode?base64=ss://YWVzLTEyOC1jdHI6dmllbi50ZWNoQDE0OS4yOC4xNDYuMTQ0OjIzMzM`到浏览器：***
+复制`/qrcode?base64=ss://YWVzLTEyOC1j`到浏览器：***
 
 ***<c、好吧，如果你的客户端很笨，上面的都不支持，那只能原始的手动填入信息了，还记得上面让你保留的信息吗？都在那里！***
 
