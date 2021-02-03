@@ -34,3 +34,6 @@ docker inspect 9430b0caf133
 
 # 进入两个子节点容器，通过客户端命令配置主从
 >> slaveof 172.17.0.3 6000
+
+# 命令窗，查看节点信息
+127.0.0.1:6379> info replication
