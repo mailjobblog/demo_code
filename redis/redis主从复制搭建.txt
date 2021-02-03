@@ -87,6 +87,25 @@ repl_backlog_size:1048576
 repl_backlog_first_byte_offset:741
 repl_backlog_histlen:1078
 
+# 查看容器日志 docker logs redis-son1
+1:M 03 Feb 2021 14:35:16.818 * Ready to accept connections
+1:S 03 Feb 2021 14:51:18.055 * Before turning into a replica, using my own master parameters to synthesize a cached master: I may be able to synchronize with the new master with just a partial transfer.
+1:S 03 Feb 2021 14:51:18.055 * REPLICAOF 172.17.0.2:6379 enabled (user request from 'id=4 addr=127.0.0.1:42226 fd=8 name= age=18 idle=1 flags=N db=0 sub=0 psub=0 multi=-1 qbuf=44 qbuf-free=32724 argv-mem=21 obl=0 oll=0 omem=0 tot-mem=61485 events=r cmd=slaveof user=default')
+1:S 03 Feb 2021 14:51:18.942 * Connecting to MASTER 172.17.0.2:6379
+1:S 03 Feb 2021 14:51:18.942 * MASTER <-> REPLICA sync started
+1:S 03 Feb 2021 14:51:18.942 * Non blocking connect for SYNC fired the event.
+1:S 03 Feb 2021 14:51:18.942 * Master replied to PING, replication can continue...
+1:S 03 Feb 2021 14:51:18.942 * Trying a partial resynchronization (request 576cafb79ad03b75bdc16259faa998f93e4baff2:1).
+1:S 03 Feb 2021 14:51:18.943 * Full resync from master: d70a67dbcd5f8d4cc0ec94364271794a467e8957:7871
+1:S 03 Feb 2021 14:51:18.943 * Discarding previously cached master state.
+1:S 03 Feb 2021 14:51:19.064 * MASTER <-> REPLICA sync: receiving 219 bytes from master to disk
+1:S 03 Feb 2021 14:51:19.064 * MASTER <-> REPLICA sync: Flushing old data
+1:S 03 Feb 2021 14:51:19.064 * MASTER <-> REPLICA sync: Loading DB in memory
+1:S 03 Feb 2021 14:51:19.098 * Loading RDB produced by version 6.0.10
+1:S 03 Feb 2021 14:51:19.098 * RDB age 1 seconds
+1:S 03 Feb 2021 14:51:19.098 * RDB memory usage when created 1.87 Mb
+1:S 03 Feb 2021 14:51:19.098 * MASTER <-> REPLICA sync: Finished with success
+
 
 # 遇到的问题
 1、用容器ip+run端口配置失败
@@ -104,3 +123,7 @@ https://docker_practice.gitee.io/zh-cn/advanced_network/
 -v /root/usr/local/redis/data:/data：映射数据目录
 说明：
 容器里面的 /data 是redis产品的文件存放地址，例如 rdb 、aof 持久化文件
+
+
+
+docker run -itd -p 6003:6379 -v /root/usr/local/redis/data:/data --name redis-son3 621ceef7494a
