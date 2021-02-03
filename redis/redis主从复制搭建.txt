@@ -24,16 +24,65 @@ docker exec -it 9430b0caf133 /bin/bash
 docker inspect 9430b0caf133
 
 # 父节点ip
->> "IPAddress": "172.17.0.3"
+>> "IPAddress": "172.17.0.2"
 
 # 看看子节点的ip
 # redis son1 节点 
->> "IPAddress": "172.17.0.4"
+>> "IPAddress": "172.17.0.3"
 # redis son2 节点
->> "IPAddress": "172.17.0.5"
+>> "IPAddress": "172.17.0.4"
+
+# 所以当前三个节点信息如下
+---------------------------------
+父：172.17.0.3:6000
+子：172.17.0.3:6001
+子：172.17.0.3:6002
+---------------------------------
+
 
 # 进入两个子节点容器，通过客户端命令配置主从
->> slaveof 172.17.0.3 6000
+## 通过redis-master内网ip+端口配置
+>> slaveof 172.17.0.2 6379
+## 通过公网ip+run的端口配置
+>> slaveof 49.233.105.xxx 6000
 
 # 命令窗，查看节点信息
 127.0.0.1:6379> info replication
+
+# 父节点查看
+127.0.0.1:6379> info replication
+# Replication
+role:master
+connected_slaves:2
+slave0:ip=49.233.105.235,port=6379,state=online,offset=1762,lag=0
+slave1:ip=172.17.0.4,port=6379,state=online,offset=1762,lag=1
+master_replid:d70a67dbcd5f8d4cc0ec94364271794a467e8957
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:1762
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:1762
+
+# 子节点查看
+127.0.0.1:6379> info replication
+# Replication
+role:slave
+master_host:172.17.0.2
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:1
+master_sync_in_progress:0
+slave_repl_offset:1818
+slave_priority:100
+slave_read_only:1
+connected_slaves:0
+master_replid:d70a67dbcd5f8d4cc0ec94364271794a467e8957
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:1818
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:741
+repl_backlog_histlen:1078
