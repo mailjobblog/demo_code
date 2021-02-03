@@ -94,4 +94,4 @@ repl_backlog_histlen:1078
 看了一下docker文档
 https://docker_practice.gitee.io/zh-cn/advanced_network/
 发现容器的网络都是关在docker0这个网桥上面
-所以内部通信直接用容器内的端口即可
+外部通信需要 端口映射到内部，内部通信直接基于 docker0 进行通信，不需要外部映射这个步骤了
