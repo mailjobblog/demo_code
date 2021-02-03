@@ -86,3 +86,12 @@ repl_backlog_active:1
 repl_backlog_size:1048576
 repl_backlog_first_byte_offset:741
 repl_backlog_histlen:1078
+
+
+# 遇到的问题
+刚刚可是配置的时候，用 slaveof 172.17.0.2 6000 的 6000 端口配置的，结果失败。
+看来是我对 docker 网络这一块理解的不够深刻，刚刚开始觉得应该容器需要通过外面的那一层壳通信，结果内部可以直接通信
+看了一下docker文档
+https://docker_practice.gitee.io/zh-cn/advanced_network/
+发现容器的网络都是关在docker0这个网桥上面
+所以内部通信直接用容器内的端口即可
