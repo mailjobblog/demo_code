@@ -1,0 +1,17 @@
+# 拉取redis镜像
+docker pull redis
+----------------------------
+[root@VM-0-15-centos ~]# docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+ubuntu        18.04     c090eaba6b94   13 days ago     63.3MB
+redis         latest    621ceef7494a   2 weeks ago     104MB
+----------------------------
+
+# 创建父节点redis
+docker run -itd -p 6000:6379 --name redis-father 621ceef7494a
+
+# 创建子节点redis1
+docker run -itd -p 6001:6379 --name redis-son1 621ceef7494a
+
+# 创建子节点redis2
+docker run -itd -p 6002:6379 --name redis-son2 621ceef7494a
