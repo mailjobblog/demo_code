@@ -15,3 +15,13 @@ docker run -itd -p 6001:6379 --name redis-son1 621ceef7494a
 
 # 创建子节点redis2
 docker run -itd -p 6002:6379 --name redis-son2 621ceef7494a
+
+
+# 进入父节点看看
+docker ps
+---------------------------
+[root@VM-0-15-centos ~]# docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                    NAMES
+9430b0caf133   621ceef7494a   "docker-entrypoint.s…"   10 minutes ago   Up 10 minutes   0.0.0.0:6000->6379/tcp   redis-father
+---------------------------
+docker exec -it 9430b0caf133 /bin/bash
