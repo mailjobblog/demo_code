@@ -54,7 +54,7 @@ docker inspect 9430b0caf133
 # Replication
 role:master
 connected_slaves:2
-slave0:ip=49.233.105.235,port=6379,state=online,offset=1762,lag=0
+slave0:ip=49.233.105.xxx,port=6379,state=online,offset=1762,lag=0
 slave1:ip=172.17.0.4,port=6379,state=online,offset=1762,lag=1
 master_replid:d70a67dbcd5f8d4cc0ec94364271794a467e8957
 master_replid2:0000000000000000000000000000000000000000
