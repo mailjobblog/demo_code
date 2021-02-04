@@ -124,6 +124,5 @@ https://docker_practice.gitee.io/zh-cn/advanced_network/
 说明：
 容器里面的 /data 是redis产品的文件存放地址，例如 rdb 、aof 持久化文件
 
-
-
+3、上面做的时候，我图方便也没做数据卷的映射，实际过程中，中了减小容器的冗余，务必要做数据卷的映射哦
 docker run -itd -p 6003:6379 -v /root/usr/local/redis/data:/data --name redis-son3 621ceef7494a
