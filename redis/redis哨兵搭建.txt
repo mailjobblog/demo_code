@@ -1,0 +1,74 @@
+# 创建一个网络
+docker network create  --subnet=172.30.0.0/16  netredis
+
+# 查看该网络的信息
+docker network inspect netredis
+--------------------------------
+"Subnet": "172.30.0.0/16"
+--------------------------------
+
+# 查看之前pull的redis镜像
+docker images
+--------------------------------
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+redis        latest    621ceef7494a   3 weeks ago   104MB
+--------------------------------
+
+# redis.conf 和 sentinel.conf 下载
+下载地址：https://github.com/redis/redis
+
+# 在 /data/redis_group 目录下创建了，data1 到 data6 六个目录
+# 在 /data/redis_group/conf1 目录放入 redis.conf 和 sentinel.conf 。然后复制了六份。如下：
+--------------------------------
+[root@VM-0-15-centos redis_group]# pwd
+/data/redis_group
+[root@VM-0-15-centos redis_group]# ll
+total 48
+drwxr-xr-x 2 root root 4096 Feb  5 15:00 conf1
+drwxr-xr-x 2 root root 4096 Feb  5 15:01 conf2
+drwxr-xr-x 2 root root 4096 Feb  5 15:02 conf3
+drwxr-xr-x 2 root root 4096 Feb  5 15:02 conf4
+drwxr-xr-x 2 root root 4096 Feb  5 15:02 conf5
+drwxr-xr-x 2 root root 4096 Feb  5 15:02 conf6
+drwxr-xr-x 2 root root 4096 Feb  5 14:23 data1
+drwxr-xr-x 2 root root 4096 Feb  5 14:23 data2
+drwxr-xr-x 2 root root 4096 Feb  5 14:23 data3
+drwxr-xr-x 2 root root 4096 Feb  5 14:23 data4
+drwxr-xr-x 2 root root 4096 Feb  5 14:23 data5
+drwxr-xr-x 2 root root 4096 Feb  5 14:23 data6
+--------------------------------
+
+# 创建redis主从复制节点
+docker run -itd -p 6000:6379 --network netredis --ip 172.30.0.10 -v /data/redis_group/data1:/data -v /data/redis_group/conf1/redis.conf:/etc/redis.conf --name redis1 621ceef7494a
+docker run -itd -p 6001:6379 --network netredis --ip 172.30.0.11 -v /data/redis_group/data2:/data -v /data/redis_group/conf2/redis.conf:/etc/redis.conf --name redis2 621ceef7494a
+docker run -itd -p 6002:6379 --network netredis --ip 172.30.0.12 -v /data/redis_group/data3:/data -v /data/redis_group/conf3/redis.conf:/etc/redis.conf --name redis3 621ceef7494a
+
+# 创建redis哨兵节点
+docker run -itd -p 26000:6379 --network netredis --ip 172.30.0.20 -v /data/redis_group/data4:/data -v /data/redis_group/conf4/redis.conf:/etc/redis.conf -v /data/redis_group/conf4/sentinel.conf:/etc/sentinel.conf --name redis-s1 621ceef7494a
+docker run -itd -p 26001:6379 --network netredis --ip 172.30.0.21 -v /data/redis_group/data5:/data -v /data/redis_group/conf5/redis.conf:/etc/redis.conf -v /data/redis_group/conf5/sentinel.conf:/etc/sentinel.conf --name redis-s2 621ceef7494a
+docker run -itd -p 26002:6379 --network netredis --ip 172.30.0.22 -v /data/redis_group/data6:/data -v /data/redis_group/conf6/redis.conf:/etc/redis.conf -v /data/redis_group/conf6/sentinel.conf:/etc/sentinel.conf --name redis-s3 621ceef7494a
+
+# redis主从节点如下
+------------------------------------------
+名字--------IP--------------端口-----角色
+redis1------172.30.0.10-----6000-----mater
+redis2------172.30.0.11-----6001-----slave
+redis3------172.30.0.12-----6002-----slave
+------------------------------------------
+
+
+# 对于 redis 节点配置主从
+# 我会依照上面我计划的角色把他们配置成这样的主从关系
+# 进行配置
+# slaveof 172.30.0.10 6379
+# 命令窗，查看节点配置信息
+127.0.0.1:6379> info replication
+
+
+# 哨兵节点如下
+------------------------------------
+名字----------IP--------------端口--
+redis-s1------172.30.0.20-----26000
+redis-s2------172.30.0.21-----26001
+redis-s3------172.30.0.22-----26002
+------------------------------------
