@@ -43,6 +43,9 @@ docker run -itd -p 6000:6379 --network netredis --ip 172.30.0.10 -v /data/redis_
 docker run -itd -p 6001:6379 --network netredis --ip 172.30.0.11 -v /data/redis_group/data2:/data -v /data/redis_group/conf2/redis.conf:/etc/redis.conf --name redis2 621ceef7494a
 docker run -itd -p 6002:6379 --network netredis --ip 172.30.0.12 -v /data/redis_group/data3:/data -v /data/redis_group/conf3/redis.conf:/etc/redis.conf --name redis3 621ceef7494a
 
+# 如果要开启数据持久化，加上这个
+--appendonly yes
+
 # 创建redis哨兵节点
 docker run -itd -p 26000:6379 --network netredis --ip 172.30.0.20 -v /data/redis_group/data4:/data -v /data/redis_group/conf4/redis.conf:/etc/redis.conf -v /data/redis_group/conf4/sentinel.conf:/etc/sentinel.conf --name redis-s1 621ceef7494a
 docker run -itd -p 26001:6379 --network netredis --ip 172.30.0.21 -v /data/redis_group/data5:/data -v /data/redis_group/conf5/redis.conf:/etc/redis.conf -v /data/redis_group/conf5/sentinel.conf:/etc/sentinel.conf --name redis-s2 621ceef7494a
@@ -72,3 +75,16 @@ redis-s1------172.30.0.20-----26000
 redis-s2------172.30.0.21-----26001
 redis-s3------172.30.0.22-----26002
 ------------------------------------
+
+
+# 哨兵 redis-s1 配置
+# vim /data/redis_group/conf4/sentinel.conf
+port 26379
+daemonize yes
+logfile "/data/26000.log"
+sentinel monitor mymaster 172.30.0.10 6379 2
+
+
+哨兵节点的启动有两种方式，二者作用是完全相同的：
+redis-sentinel sentinel.conf
+redis-server sentinel.conf --sentinel
