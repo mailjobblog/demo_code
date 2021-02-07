@@ -1,0 +1,134 @@
+version: "3.0"
+services:
+  redis-cluster1:
+     image: redis-cluster
+     container_name: redis-cluster1
+     working_dir: /config
+     environment:
+       - PORT=6391
+     ports:
+       - "6391:6379"
+       - "16391:16391"
+     stdin_open: true
+     networks:
+        redis-cluster:
+          ipv4_address: 172.50.0.2
+     tty: true
+     privileged: true
+     volumes: ["/usr/docker/redis-cluster/config:/config"]
+     entrypoint:
+       - /bin/bash
+      # - redis.sh
+  redis-cluster2:
+       image: redis-cluster
+       working_dir: /config
+       container_name: redis-cluster2
+       environment:
+              - PORT=6392
+       networks:
+          redis-cluster:
+             ipv4_address: 172.50.0.3
+       ports:
+         - "6392:6379"
+         - "16392:16392"
+       stdin_open: true
+       tty: true
+       privileged: true
+       volumes: ["/usr/docker/redis-cluster/config:/config"]
+       entrypoint:
+         - /bin/bash
+       #  - redis.sh
+  redis-cluster3:
+       image: redis-cluster
+       container_name: redis-cluster3
+       working_dir: /config
+       environment:
+              - PORT=6393
+       networks:
+          redis-cluster:
+            ipv4_address: 172.50.0.4
+       ports:
+         - "6393:6379"
+         - "16393:16393"
+       stdin_open: true
+       tty: true
+       privileged: true
+       volumes: ["/usr/docker/redis-cluster/config:/config"]
+       entrypoint:
+         - /bin/bash
+        # - redis.sh
+  redis-cluster4:
+       image: redis-cluster
+       container_name: redis-slave1
+       working_dir: /config
+       environment:
+            - PORT=6394
+       networks:
+          redis-slave:
+             ipv4_address: 172.30.0.2
+       ports:
+         - "6394:6379"
+         - "16394:16394"
+       stdin_open: true
+       tty: true
+       privileged: true
+       volumes: ["/usr/docker/redis-cluster/config:/config"]
+       entrypoint:
+         - /bin/bash
+         #- redis.sh
+  redis-cluster5:
+       image: redis-cluster
+       working_dir: /config
+       container_name: redis-slave2
+       environment:
+             - PORT=6395
+       ports:
+         - "6395:6379"
+         - "16395:16395"
+       stdin_open: true
+       networks:
+          redis-slave:
+              ipv4_address: 172.30.0.3
+       tty: true
+       privileged: true
+       volumes: ["/usr/docker/redis-cluster/config:/config"]
+       entrypoint:
+         - /bin/bash
+         #- redis.sh
+  redis-cluster6:
+       image: redis-cluster
+       container_name: redis-slave3
+       working_dir: /config
+       environment:
+          - PORT=6396
+       ports:
+         - "6396:6379"
+         - "16396:16396"
+       stdin_open: true
+       networks:
+          redis-slave:
+            ipv4_address: 172.30.0.4
+       tty: true
+       privileged: true
+       volumes: ["/usr/docker/redis-cluster/config:/config"]
+       entrypoint:
+         - /bin/bash
+         #- redis.sh
+networks:
+  redis-cluster:
+     driver: bridge
+     ipam:
+       driver: default
+       config:
+          -
+           subnet: 172.50.0.0/16
+  redis-slave:
+       driver: bridge
+       ipam:
+         driver: default
+         config:
+            -
+             subnet: 172.30.0.0/16
+  redis-test:
+     external:
+       name: mynetwork
