@@ -103,11 +103,34 @@ For check, fix, reshard, del-node, set-timeout you can specify the host and port
 
 ```
 redis-cli --cluster create 172.31.0.11:6379  172.31.0.12:6379  172.31.0.13:6379 172.31.0.14:6379 172.31.0.15:6379 172.31.0.16:6379 --cluster-replicas 1
+
+>>> Performing hash slots allocation on 6 nodes...
+Master[0] -> Slots 0 - 5460
+Master[1] -> Slots 5461 - 10922
+Master[2] -> Slots 10923 - 16383
+Adding replica 172.31.0.15:6379 to 172.31.0.11:6379
+Adding replica 172.31.0.16:6379 to 172.31.0.12:6379
+Adding replica 172.31.0.14:6379 to 172.31.0.13:6379
+M: 50fa88c4a01f968df6ab7e8bd02e1bb51c85f13f 172.31.0.11:6379
+   slots:[0-5460] (5461 slots) master
+M: 04a2118b3f7b7521a55cf77171f1c50fe1a80f4d 172.31.0.12:6379
+   slots:[5461-10922] (5462 slots) master
+M: b83a282329830e2ea686889cb8aa9eafa3441b8f 172.31.0.13:6379
+   slots:[10923-16383] (5461 slots) master
+S: 9b0a2284c341efa7055dd2046aec2e1c43ee6f9b 172.31.0.14:6379
+   replicates b83a282329830e2ea686889cb8aa9eafa3441b8f
+S: 09aca472595a229e7ceda2792aed98f88d757d45 172.31.0.15:6379
+   replicates 50fa88c4a01f968df6ab7e8bd02e1bb51c85f13f
+S: 2ce485e6a5bc5a3f300347c123ce911e605bf164 172.31.0.16:6379
+   replicates 04a2118b3f7b7521a55cf77171f1c50fe1a80f4d
+Can I set the above configuration? (type 'yes' to accept): 
 ```
 
 > --cluster create : 表示创建集群  
 > --cluster-replicas 0 : 表示只创建n个主节点，不创建从节点  
 > --cluster-replicas 1 : 表示为集群中的每个主节点创建一个从节点（例：master[172.31.0.11:6379] -> slave[172.31.0.14:6379]）  
+
+![](http://img.github.mailjob.net/jefferyjob.github.io/20210208174303.png)
 
 
 ### 搭建问题
