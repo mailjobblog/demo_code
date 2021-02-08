@@ -35,6 +35,8 @@ docker-compose up -d
 
 ![](http://img.github.mailjob.net/jefferyjob.github.io/20210208134455.png)
 
+# 开始搭建集群
+
 ### 这里以进入 redis-c1 为例
 
 ```
