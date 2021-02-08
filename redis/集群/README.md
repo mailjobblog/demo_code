@@ -106,9 +106,9 @@ For check, fix, reshard, del-node, set-timeout you can specify the host and port
 redis-cli --cluster create 172.31.0.11:6379  172.31.0.12:6379  172.31.0.13:6379 172.31.0.14:6379 172.31.0.15:6379 172.31.0.16:6379 --cluster-replicas 1
 ```
 
-> --cluster create : 表示创建集群
-> --cluster-replicas 0 : 表示只创建n个主节点，不创建从节点
-> --cluster-replicas 1 : 表示为集群中的每个主节点创建一个从节点（例：master[172.31.0.11:6379] -> slave[172.31.0.14:6379]）
+> --cluster create : 表示创建集群  
+> --cluster-replicas 0 : 表示只创建n个主节点，不创建从节点  
+> --cluster-replicas 1 : 表示为集群中的每个主节点创建一个从节点（例：master[172.31.0.11:6379] -> slave[172.31.0.14:6379]）  
 
 
 ### 搭建问题
