@@ -282,6 +282,65 @@ redis-cli -h 172.31.0.11 --cluster reshard 172.31.0.11:6379
 redis-cli -h 172.31.0.11 --cluster rebalance 172.31.0.11:6379
 ```
 
+- 172.31.0.11 这个只要是随便一个 master 节点都可以操作集群
+
+### 分配槽演示
+
+```
+# 可以先看到节点信息
+
+>>> Performing Cluster Check (using node 172.31.0.11:6379)
+M: 9af405be84c1d448988117f88f78fa588d49a196 172.31.0.11:6379
+   slots:[0-5460] (5461 slots) master
+   1 additional replica(s)
+S: 3a12f6b4ed5f26b83525681e73ee23750bcbcfbf 172.31.0.18:6379
+   slots: (0 slots) slave
+   replicates 34a33c9df9d909e69e5cad8965d905b72959c677
+S: 7c35cf01519c5747ca262769ed47dbbe44eeb830 172.31.0.14:6379
+   slots: (0 slots) slave
+   replicates 780d17c7c9ca86f68b6119762f0958f00093702a
+M: 780d17c7c9ca86f68b6119762f0958f00093702a 172.31.0.13:6379
+   slots:[10923-16383] (5461 slots) master
+   1 additional replica(s)
+M: 34a33c9df9d909e69e5cad8965d905b72959c677 172.31.0.17:6379
+   slots: (0 slots) master
+   1 additional replica(s)
+S: a4956784b0221598c23d18fbcad844e18eefab63 172.31.0.15:6379
+   slots: (0 slots) slave
+   replicates 9af405be84c1d448988117f88f78fa588d49a196
+M: ddf46bbdf6794d12debe824ce4e30ea96cd70212 172.31.0.12:6379
+   slots:[5461-10922] (5462 slots) master
+   1 additional replica(s)
+S: a2820f32aa18e7ec2d880aedc8d91c9db840dcd9 172.31.0.16:6379
+   slots: (0 slots) slave
+   replicates ddf46bbdf6794d12debe824ce4e30ea96cd70212
+[OK] All nodes agree about slots configuration.
+>>> Check for open slots...
+>>> Check slots coverage...
+[OK] All 16384 slots covered.
+```
+
+- 可以看到这里新加入的master `172.31.0.17` 没有数据槽
+
+```
+# 询问要迁移的槽的数量（我在这里迁移了500个）
+How many slots do you want to move (from 1 to 16384)? 500
+# 询问被迁移的槽的ID（我这里迁移的是：172.31.0.11）
+What is the receiving node ID? 34a33c9df9d909e69e5cad8965d905b72959c677
+# 请输入所有源节点ID
+Please enter all the source node IDs.
+   # 键入“all”将所有节点用作哈希槽的源节点
+  Type 'all' to use all the nodes as source nodes for the hash slots.
+   # 输入所有源节点ID后键入“done”。
+  Type 'done' once you entered all the source nodes IDs.
+# 输入源的ID后，进行迁移
+Source node #1: 9af405be84c1d448988117f88f78fa588d49a196
+Source node #2: done
+
+```
+
+- 用这个方法，也可以把某一个源的槽都迁移后。那么该槽就可以进行删除了
+
 # 搭建问题
 
 #### 创建集群主从节点报错
