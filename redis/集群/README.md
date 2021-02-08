@@ -1,6 +1,14 @@
 # Demo：docker-compose 实现redis集群
 
-### 容器对应关系
+# 相关链接
+
+> redis集群演示服务分布图：https://www.kdocs.cn/view/l/sfN4qFXA2SyN
+
+## docker-compose 文件说明
+
+> 该演示示例用的是 `redis6.0.10` 版本
+
+### 文件中容器对应关系
 
 |  容器名称   | IP  | 客户端连接端口映射 | 集群端口映射  | 预想角色  |
 |  ----  | ----  |  ----  | ----  | ----  |
@@ -10,8 +18,41 @@
 | redis-c4  | 172.31.0.14 | 6304->6379 | 16304->16379  | slave |
 | redis-c5  | 172.31.0.15 | 6305->6379 | 16305->16379  | slave |
 | redis-c6  | 172.31.0.16 | 6306->6379 | 16306->16379  | slave |
+| redis-c7  | 172.31.0.17 | 6307->6379 | 16307->16379  | master （演示集群伸缩中使用） |
+| redis-c8  | 172.31.0.18 | 6308->6379 | 16308->16379  | slave （演示集群伸缩中使用） |
 
-![](http://img.github.mailjob.net/jefferyjob.github.io/20210208133634.png)
+
+### 集群主要配置文件说明
+
+```
+# 端口
+port 6379
+# 是否开启集群
+cluster-enabled yes
+# 集群超时时间
+cluster-node-timeout 5000
+# 更新操作后进行日志记录
+appendonly yes
+# 集群配置文件
+cluster-config-file "/redis/log/nodes.conf"
+# 是否开启外部连接
+protected-mode no
+# redis守护进程
+daemonize no
+# 本地数据库存放目录
+dir "/redis/data"
+# redis日志文件
+logfile "/redis/log/redis.log"
+```
+
+```
+daemonize 设置yes或者no区别（默认：no）
+
+daemonize:yes:redis采用的是单进程多线程的模式。当redis.conf中选项daemonize设置成yes时，代表开启守护进程模式。在该模式下，redis会在后台运行，并将进程pid号写入至redis.conf选项pidfile设置的文件中，此时redis将一直运行，除非手动kill该进程。
+daemonize:no: 当daemonize选项设置成no时，当前界面将进入redis的命令行界面，exit强制退出或者关闭连接工具(putty,xshell等)都会导致redis进程退出。
+```
+
+# 开始搭建集群
 
 ### 在宿主机 /data 上传 j_cluster
 
@@ -103,7 +144,9 @@ For check, fix, reshard, del-node, set-timeout you can specify the host and port
 
 ```
 redis-cli --cluster create 172.31.0.11:6379  172.31.0.12:6379  172.31.0.13:6379 172.31.0.14:6379 172.31.0.15:6379 172.31.0.16:6379 --cluster-replicas 1
+```
 
+```
 >>> Performing hash slots allocation on 6 nodes...
 Master[0] -> Slots 0 - 5460
 Master[1] -> Slots 5461 - 10922
@@ -135,7 +178,7 @@ Can I set the above configuration? (type 'yes' to accept):
 ### 查看集群
 
 ```
-# 查看节点
+# 查看节点主从关系
 127.0.0.1:6379> cluster nodes
 b83a282329830e2ea686889cb8aa9eafa3441b8f 172.31.0.13:6379@16379 master - 0 1612778025467 3 connected 10923-16383
 04a2118b3f7b7521a55cf77171f1c50fe1a80f4d 172.31.0.12:6379@16379 master - 0 1612778025000 2 connected 5461-10922
@@ -173,8 +216,75 @@ b83a282329830e2ea686889cb8aa9eafa3441b8f 172.31.0.13:6379@16379 master - 0 16127
 
 ```
 
-### 搭建问题
+### 数据存储
 
-##### 创建集群主从节点报错
+```
+# 直接存储提示槽信息不对
+127.0.0.1:6379> set name libin
+(error) MOVED 5798 172.31.0.12:6379
+
+# 客户端连接加入 -c 数据可以直接被重定向到槽服务器
+root@00bfb4f9402a:/redis# redis-cli -c
+127.0.0.1:6379> set name libin
+-> Redirected to slot [5798] located at 172.31.0.12:6379
+OK
+
+# 存储多个key的时候，由于不同的槽服务器，报错问题
+172.31.0.12:6379> mset k1 v1 k2 v2
+(error) CROSSSLOT Keys in request don't hash to the same slot
+
+# 加入一个 tag 即可解决
+172.31.0.12:6379> mset {r}k1 v1 {r}k2 v2
+OK
+```
+
+# 集群伸缩
+
+> 1、准备新的redis节点服务器  
+> 2、加入到集群中  
+> 3、分配数据槽和迁移数据  
+
+### 加入一个新的 master 节点
+
+```
+redis-cli -h 172.31.0.17 --cluster add-node 172.31.0.17:6379 172.31.0.11:6379
+```
+
+- 这里的新加入的master节点是 172.31.0.17
+- 172.31.0.11 代表的事现在存在的集群中的任意一个 master 节点
+
+### 为新加入的 master 节点添加一个 slave 节点
+
+```
+redis-cli -h 172.31.0.17 --cluster add-node 172.31.0.18:6379 172.31.0.17:6379 --cluster-slave
+```
+
+- 172.31.0.17 代表上面行加入的 master 节点
+- 172.31.0.18 代表为 master（172.31.0.17）加入的从节点
+- --cluster-slave 代表是 slave（从节点）的身份
+
+### 删除 slave 节点
+
+```
+redis-cli -h 172.31.0.18 --cluster del-node 172.31.0.18:6379 3a12f6b4ed5f26b83525681e73ee23750bcbcfbf
+```
+
+- 3a12f6b4ed5f26b83525681e73ee23750bcbcfbf 是通过 `cluster nodes` 命令得到的节点ID
+- 如果上面有数据的话，无法删除，需要先迁移数据
+
+### 为节点分配槽
+
+```
+# 指定分配
+redis-cli -h 172.31.0.11 --cluster reshard 172.31.0.11:6379
+
+# 平均分配
+redis-cli -h 172.31.0.11 --cluster rebalance 172.31.0.11:6379
+```
+
+# 搭建问题
+
+#### 创建集群主从节点报错
 
 > [ERR] Node 172.31.0.11:6379 is not configured as a cluster node
+> 查看配置文件的配置问题

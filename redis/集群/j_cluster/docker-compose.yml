@@ -91,6 +91,34 @@ services:
     working_dir: /redis
     command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
     restart: always
+  cluster7:
+    image: redis:6.0.10
+    container_name: redis-c7
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.17
+    ports:
+      - "6307:6379"
+      - "16307:16379"
+    volumes:
+      - /data/j_cluster/17:/redis
+    working_dir: /redis
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
+    restart: always
+  cluster8:
+    image: redis:6.0.10
+    container_name: redis-c8
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.18
+    ports:
+      - "6308:6379"
+      - "16308:16379"
+    volumes:
+      - /data/j_cluster/18:/redis
+    working_dir: /redis
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
+    restart: always
 networks:
   net-rediscluster:
      driver: bridge # 网络后端的驱动，默认为 bridge
