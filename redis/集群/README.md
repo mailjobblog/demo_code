@@ -49,9 +49,8 @@ docker exec -it redis-c1 /bin/bash
 
 ### 浏览一下redis的集群命令
 
-> 以下命令只有 redis5 以后才有
-> redis5 以后redis发布了集群搭建命令
-> redis5 以前如果你要搭建的话，可以采用 Ruby 脚本
+> 以下命令只有 redis5 以后才有,redis5 以后redis发布了集群搭建命令  
+> redis5 以前如果你要搭建的话，可以采用 Ruby 脚本  
 
 ```
 # 查看集群帮助文档
