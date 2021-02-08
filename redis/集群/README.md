@@ -132,6 +132,46 @@ Can I set the above configuration? (type 'yes' to accept):
 
 ![](http://img.github.mailjob.net/jefferyjob.github.io/20210208174303.png)
 
+### 查看集群
+
+```
+# 查看节点
+127.0.0.1:6379> cluster nodes
+b83a282329830e2ea686889cb8aa9eafa3441b8f 172.31.0.13:6379@16379 master - 0 1612778025467 3 connected 10923-16383
+04a2118b3f7b7521a55cf77171f1c50fe1a80f4d 172.31.0.12:6379@16379 master - 0 1612778025000 2 connected 5461-10922
+50fa88c4a01f968df6ab7e8bd02e1bb51c85f13f 172.31.0.11:6379@16379 myself,master - 0 1612778024000 1 connected 0-5460
+9b0a2284c341efa7055dd2046aec2e1c43ee6f9b 172.31.0.14:6379@16379 slave b83a282329830e2ea686889cb8aa9eafa3441b8f 0 1612778024565 3 connected
+2ce485e6a5bc5a3f300347c123ce911e605bf164 172.31.0.16:6379@16379 slave 04a2118b3f7b7521a55cf77171f1c50fe1a80f4d 0 1612778024465 2 connected
+09aca472595a229e7ceda2792aed98f88d757d45 172.31.0.15:6379@16379 slave 50fa88c4a01f968df6ab7e8bd02e1bb51c85f13f 0 1612778024000 1 connected
+
+# 列出槽和节点信息
+127.0.0.1:6379> cluster slots
+1) 1) (integer) 10923
+   2) (integer) 16383
+   3) 1) "172.31.0.13"
+      2) (integer) 6379
+      3) "b83a282329830e2ea686889cb8aa9eafa3441b8f"
+   4) 1) "172.31.0.14"
+      2) (integer) 6379
+      3) "9b0a2284c341efa7055dd2046aec2e1c43ee6f9b"
+2) 1) (integer) 5461
+   2) (integer) 10922
+   3) 1) "172.31.0.12"
+      2) (integer) 6379
+      3) "04a2118b3f7b7521a55cf77171f1c50fe1a80f4d"
+   4) 1) "172.31.0.16"
+      2) (integer) 6379
+      3) "2ce485e6a5bc5a3f300347c123ce911e605bf164"
+3) 1) (integer) 0
+   2) (integer) 5460
+   3) 1) "172.31.0.11"
+      2) (integer) 6379
+      3) "50fa88c4a01f968df6ab7e8bd02e1bb51c85f13f"
+   4) 1) "172.31.0.15"
+      2) (integer) 6379
+      3) "09aca472595a229e7ceda2792aed98f88d757d45"
+
+```
 
 ### 搭建问题
 
