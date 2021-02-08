@@ -12,6 +12,8 @@ services:
     volumes: # 数据卷
       - /data/j_cluster/11:/redis # redis数据文件+配置文件
     working_dir: /redis # 指定容器中的工作目录
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"] # 容器启动默认命令
+    restart: always # 跟随启动
     #environment: # 设置环境变量
     #  - PORT=6391
     #stdin_open: true # 打开标准输入
@@ -31,6 +33,8 @@ services:
     volumes:
       - /data/j_cluster/12:/redis
     working_dir: /redis
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
+    restart: always
   cluster3:
     image: redis:6.0.10
     container_name: redis-c3
@@ -43,6 +47,8 @@ services:
     volumes:
       - /data/j_cluster/13:/redis
     working_dir: /redis
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
+    restart: always
   cluster4:
     image: redis:6.0.10
     container_name: redis-c4
@@ -55,6 +61,8 @@ services:
     volumes:
       - /data/j_cluster/14:/redis
     working_dir: /redis
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
+    restart: always
   cluster5:
     image: redis:6.0.10
     container_name: redis-c5
@@ -67,6 +75,8 @@ services:
     volumes:
       - /data/j_cluster/15:/redis
     working_dir: /redis
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
+    restart: always
   cluster6:
     image: redis:6.0.10
     container_name: redis-c6
@@ -79,6 +89,8 @@ services:
     volumes:
       - /data/j_cluster/16:/redis
     working_dir: /redis
+    command: ["/usr/local/bin/redis-server","/redis/conf/redis.conf"]
+    restart: always
 networks:
   net-rediscluster:
      driver: bridge # 网络后端的驱动，默认为 bridge
