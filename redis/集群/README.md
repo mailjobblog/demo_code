@@ -11,6 +11,8 @@
 | redis-c5  | 172.31.0.15 | 6305->6379 | 16305->16379  | slave |
 | redis-c6  | 172.31.0.16 | 6306->6379 | 16306->16379  | slave |
 
+![](http://img.github.mailjob.net/jefferyjob.github.io/20210208133634.png)
+
 ## 在宿主机 /data 上传 j_cluster
 
 > 如果上传到了其他目录需要更改 yml 里面的数据卷映射条件
