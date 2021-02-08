@@ -29,6 +29,12 @@ docker-compose up -d
 
 ![](http://img.github.mailjob.net/jefferyjob.github.io/20210208132002.png)
 
+### 查看一下各个节点的ip
+
+> 和我在 yam 中定义的ip一致
+
+![](http://img.github.mailjob.net/jefferyjob.github.io/20210208134455.png)
+
 ### 这里以进入 redis-c1 为例
 
 ```
