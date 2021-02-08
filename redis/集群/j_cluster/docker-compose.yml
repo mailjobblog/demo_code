@@ -1,14 +1,14 @@
 version: "3.6"
-services:
+services: 
   cluster1: # 服务器名称。注意：不是容器名称
-     image: redis:6.0.10 # 镜像文件
-     container_name: redis-c1 # 容器名称
-     networks:
-        net-rediscluster:
-          ipv4_address: 172.31.0.11
+    image: redis:6.0.10 # 镜像文件
+    container_name: redis-c1 # 容器名称
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.11
     ports:
       - "6301:6379" # 客户端连接端口
-      - "16301:16391" # 节点通信端口
+      - "16301:16379" # 节点通信端口
     volumes: # 数据卷
       - /data/j_cluster/11:/redis # redis数据文件+配置文件
     working_dir: /redis # 指定容器中的工作目录
@@ -20,62 +20,62 @@ services:
     #entrypoint:
       #- /bin/bash
   cluster2:
-     image: redis:6.0.10
-     container_name: redis-c2
-     networks:
-        net-rediscluster:
-          ipv4_address: 172.31.0.12
+    image: redis:6.0.10
+    container_name: redis-c2
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.12
     ports:
       - "6302:6379"
-      - "16302:16391"
+      - "16302:16379"
     volumes:
       - /data/j_cluster/12:/redis
     working_dir: /redis
   cluster3:
-     image: redis:6.0.10
-     container_name: redis-c3
-     networks:
-        net-rediscluster:
-          ipv4_address: 172.31.0.13
+    image: redis:6.0.10
+    container_name: redis-c3
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.13
     ports:
       - "6303:6379"
-      - "16303:16391"
+      - "16303:16379"
     volumes:
       - /data/j_cluster/13:/redis
     working_dir: /redis
   cluster4:
-     image: redis:6.0.10
-     container_name: redis-c4
-     networks:
-        net-rediscluster:
-          ipv4_address: 172.31.0.14
+    image: redis:6.0.10
+    container_name: redis-c4
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.14
     ports:
       - "6304:6379"
-      - "16304:16391"
+      - "16304:16379"
     volumes:
       - /data/j_cluster/14:/redis
     working_dir: /redis
   cluster5:
-     image: redis:6.0.10
-     container_name: redis-c5
-     networks:
-        net-rediscluster:
-          ipv4_address: 172.31.0.15
+    image: redis:6.0.10
+    container_name: redis-c5
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.15
     ports:
       - "6305:6379"
-      - "16305:16391"
+      - "16305:16379"
     volumes:
       - /data/j_cluster/15:/redis
     working_dir: /redis
   cluster6:
-     image: redis:6.0.10
-     container_name: redis-c6
-     networks:
-        net-rediscluster:
-          ipv4_address: 172.31.0.16
+    image: redis:6.0.10
+    container_name: redis-c6
+    networks:
+      net-rediscluster:
+        ipv4_address: 172.31.0.16
     ports:
       - "6306:6379"
-      - "16306:16391"
+      - "16306:16379"
     volumes:
       - /data/j_cluster/16:/redis
     working_dir: /redis
