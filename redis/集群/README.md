@@ -21,6 +21,9 @@
 | redis-c7  | 172.31.0.17 | 6307->6379 | 16307->16379  | master （演示集群伸缩中使用） |
 | redis-c8  | 172.31.0.18 | 6308->6379 | 16308->16379  | slave （演示集群伸缩中使用） |
 
+### 初始服务分布如下
+
+![](http://img.github.mailjob.net/jefferyjob.github.io/20210208230110.png)
 
 ### 集群主要配置文件说明
 
@@ -253,6 +256,8 @@ redis-cli -h 172.31.0.17 --cluster add-node 172.31.0.17:6379 172.31.0.11:6379
 - 这里的新加入的master节点是 172.31.0.17
 - 172.31.0.11 代表的事现在存在的集群中的任意一个 master 节点
 
+![](http://img.github.mailjob.net/jefferyjob.github.io/20210208230200.png)
+
 ### 为新加入的 master 节点添加一个 slave 节点
 
 ```
@@ -262,6 +267,8 @@ redis-cli -h 172.31.0.17 --cluster add-node 172.31.0.18:6379 172.31.0.17:6379 --
 - 172.31.0.17 代表上面行加入的 master 节点
 - 172.31.0.18 代表为 master（172.31.0.17）加入的从节点
 - --cluster-slave 代表是 slave（从节点）的身份
+
+![](http://img.github.mailjob.net/jefferyjob.github.io/20210208230233.png)
 
 ### 删除 slave 节点
 
