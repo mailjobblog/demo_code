@@ -5,7 +5,7 @@
 https://github.com/mailjobblog/dev_php
 
 
-### GO
+### Golang
 
 https://github.com/mailjobblog/dev_go
 
